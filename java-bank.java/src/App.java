@@ -5,7 +5,7 @@ public class App {
 
         // espaço para colocar variáveis//
         int option = 0, i = 0;
-        double currentBalance, savingsBalance;
+        double currentBalance, savingsBalance, depositSavings, depositCurrent,debitSavings,debitCurrent;
         String clientName, accountCurrentNumber, savingsAccountNumber;
 
         // espaço de Scanner NAO MISTURAR
@@ -16,6 +16,10 @@ public class App {
         Scanner inputSavingsBalance = new Scanner(System.in);
         Scanner inputOption = new Scanner(System.in);
         Scanner inputMenuSelector = new Scanner(System.in);
+        Scanner inputdepositSavings = new Scanner(System.in);
+        Scanner inputdepositCurrent = new Scanner(System.in);
+        Scanner inputDebitSavings = new Scanner(System.in);
+        Scanner inputDebitCurrent = new Scanner(System.in);
 
         System.out.println(
                 "Olá bem vindo ao nosso sistema bancário, para dar início ao serviço, insira os dados necessários para fazer a verificação de sua conta bancária.");
@@ -52,21 +56,42 @@ public class App {
             switch (option) {
                 case 1:
                     System.out.println("Você escolheu a opção de CREDITAR");
+                    System.out.println();
                     do {
                         System.out.println("Em qual conta será feito o CRÉDITO?");
-                        System.out.println("1 - Conta Corrente");
-                        System.out.println("2 - Conta Poupança");
-                        System.out.println("5 - SAIR");
+                        System.out.println("1 - Conta Poupança");
+                        System.out.println("2 - Conta Corrente");
+                        System.out.println("5 - VOLTAR");
                         System.out.println();
                         i = inputMenuSelector.nextInt();
 
                         if (i == 1) {
-                            // creditar conta corrente
+
+                            System.out.println("Quanto gostaria de CREDITAR em sua conta POUPANÇA " + savingsAccountNumber + " ?");
+                            System.out.println();
+                            depositSavings = inputdepositSavings.nextDouble();
+                            savingsBalance = (savingsBalance + depositSavings);
+                            System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + "->" + savingsBalance);
+                            System.out.println();
+
                         } else if (i == 2) {
-                            // creditar conta corrente
+
+                            System.out.println("Quanto gostaria de CREDITAR em sua conta CORRENTE " + accountCurrentNumber + " ?");
+                            System.out.println();
+                            depositCurrent = inputdepositCurrent.nextDouble();
+                            currentBalance = (currentBalance + depositCurrent);
+                            System.out.println("Saldo atual na conta CORRENTE " + accountCurrentNumber + "->" + currentBalance);
+                            System.out.println();
+
+                        } else if (i == 5) {
+
+                            System.out.println("Voltando para o menu anterior");
+
                         } else {
+
                             System.out.println("Operação Inválida");
                             System.out.println();
+
                         }
                     } while (i != 5);
                     break;
@@ -75,20 +100,36 @@ public class App {
                     System.out.println("Você escolheu a opção de DEBITAR");
                     do {
                         System.out.println("Em qual conta será feito o DÉBITO?");
-                        System.out.println("1 - Conta Corrente");
-                        System.out.println("2 - Conta Poupança");
+                        System.out.println("1 - Conta Poupança");
+                        System.out.println("2 - Conta Corrente");
                         System.out.println("5 - SAIR");
                         System.out.println();
                         i = inputMenuSelector.nextInt();
 
                         if (i == 1) {
-                            // DEBITAR conta corrente
+                            System.out.println("Qual será o valor do DÉBITO realizado na conta POUPANÇA "+savingsAccountNumber+" ?");
+                            debitSavings = inputDebitSavings.nextDouble();
+                            if (debitSavings > savingsBalance ) { 
+                                System.out.println("SALDO INSUFICIENTE PARA SAQUE. DIGITE OUTRO VALOR");
+                            } else{
+                                savingsBalance = (savingsBalance -debitSavings);
+                                System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + "->" + savingsBalance);
+                            }
                         } else if (i == 2) {
-                            // DEBITAR conta corrente
+                            System.out.println("Qual será o valor do DÉBITO realizado na conta CORRENTE "+accountCurrentNumber+ " ?");
+                            debitCurrent = inputDebitCurrent.nextDouble();
+                            currentBalance = (currentBalance - debitCurrent);
+                            System.out.println("Saldo atual na conta CORRENTE " +accountCurrentNumber+ "->" +currentBalance);
+
+                        } else if (i == 5) {
+
+                            System.out.println("Voltando para o menu anterior");
+
                         } else {
+
                             System.out.println("Operação Inválida");
                             System.out.println();
-                        }
+
                     } while (i != 5);
                     break;
 
@@ -96,43 +137,30 @@ public class App {
                     System.out.println("Você escolheu a opção de TRANSFERIR");
                     do {
                         System.out.println("A valor será retirado de qual conta?");
-                        System.out.println("1 - Conta Corrente");
-                        System.out.println("2 - Conta Poupança");
+                        System.out.println("1 - Conta Poupança");
+                        System.out.println("2 - Conta Corrente");
                         System.out.println("5 - SAIR");
                         System.out.println();
                         i = inputMenuSelector.nextInt();
 
                         if (i == 1) {
-                            // TRANSFERIR conta corrente
+                            // TRANSFERIR conta poupança
                         } else if (i == 2) {
                             // TRANSFERIR conta corrente
+                        }else if (i == 5) {
+
+                            System.out.println("Voltando para o menu anterior");
+
                         } else {
+
                             System.out.println("Operação Inválida");
                             System.out.println();
-                        }
                     } while (i != 5);
                     break;
 
                 case 4:
                     System.out.println("Você escolheu a opção de CONSULTAR SALDO");
-                    do {
-                        System.out.println("Em qual conta será feita a CONSULTA?");
-                        System.out.println("1 - Conta Corrente");
-                        System.out.println("2 - Conta Poupança");
-                        System.out.println("5 - SAIR");
-                        System.out.println();
-                        i = inputMenuSelector.nextInt();
-
-                        if (i == 1) {
-                            // CONSULTAR conta corrente
-                        } else if (i == 2) {
-                            // CONSULTAR conta corrente
-                        } else {
-                            System.out.println("Operação Inválida");
-                            System.out.println();
-                        }
-                    } while (i != 5);
-                    break;
+                    
 
                 case 5:
                     // operação encerrada pelo cliente
