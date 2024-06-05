@@ -5,7 +5,7 @@ public class App {
 
         // espaço para colocar variáveis//
         int option = 0, i = 0;
-        double currentBalance, savingsBalance, depositSavings, depositCurrent,debitSavings,debitCurrent;
+        double currentBalance, savingsBalance, operationValue;
         String clientName, accountCurrentNumber, savingsAccountNumber;
 
         // espaço de Scanner NAO MISTURAR
@@ -16,10 +16,7 @@ public class App {
         Scanner inputSavingsBalance = new Scanner(System.in);
         Scanner inputOption = new Scanner(System.in);
         Scanner inputMenuSelector = new Scanner(System.in);
-        Scanner inputdepositSavings = new Scanner(System.in);
-        Scanner inputdepositCurrent = new Scanner(System.in);
-        Scanner inputDebitSavings = new Scanner(System.in);
-        Scanner inputDebitCurrent = new Scanner(System.in);
+        Scanner inputOperationValue = new Scanner(System.in);
 
         System.out.println(
                 "Olá bem vindo ao nosso sistema bancário, para dar início ao serviço, insira os dados necessários para fazer a verificação de sua conta bancária.");
@@ -69,23 +66,24 @@ public class App {
 
                             System.out.println("Quanto gostaria de CREDITAR em sua conta POUPANÇA " + savingsAccountNumber + " ?");
                             System.out.println();
-                            depositSavings = inputdepositSavings.nextDouble();
-                            savingsBalance = (savingsBalance + depositSavings);
-                            System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + "->" + savingsBalance);
+                            operationValue = inputOperationValue.nextDouble();
+                            savingsBalance = (savingsBalance + operationValue);
+                            System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> " + savingsBalance);
                             System.out.println();
 
                         } else if (i == 2) {
 
                             System.out.println("Quanto gostaria de CREDITAR em sua conta CORRENTE " + accountCurrentNumber + " ?");
                             System.out.println();
-                            depositCurrent = inputdepositCurrent.nextDouble();
-                            currentBalance = (currentBalance + depositCurrent);
-                            System.out.println("Saldo atual na conta CORRENTE " + accountCurrentNumber + "->" + currentBalance);
+                            operationValue = inputOperationValue.nextDouble();
+                            currentBalance = (currentBalance + operationValue);
+                            System.out.println("Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> " + currentBalance);
                             System.out.println();
 
                         } else if (i == 5) {
 
                             System.out.println("Voltando para o menu anterior");
+                            System.out.println();
 
                         } else {
 
@@ -107,28 +105,33 @@ public class App {
                         i = inputMenuSelector.nextInt();
 
                         if (i == 1) {
-                            System.out.println("Qual será o valor do DÉBITO realizado na conta POUPANÇA "+savingsAccountNumber+" ?");
-                            debitSavings = inputDebitSavings.nextDouble();
-                            if (debitSavings > savingsBalance ) { 
+                            System.out.println("Qual será o valor do DÉBITO realizado na conta POUPANÇA "
+                                    + savingsAccountNumber + " ?");
+                            operationValue = inputOperationValue.nextDouble();
+                            if (operationValue > savingsBalance) {
                                 System.out.println("SALDO INSUFICIENTE PARA SAQUE. DIGITE OUTRO VALOR");
-                            } else{
-                                savingsBalance = (savingsBalance -debitSavings);
-                                System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + "->" + savingsBalance);
+                            } else {
+                                savingsBalance = (savingsBalance - operationValue);
+                                System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> "+ savingsBalance);
                             }
                         } else if (i == 2) {
-                            System.out.println("Qual será o valor do DÉBITO realizado na conta CORRENTE "+accountCurrentNumber+ " ?");
-                            debitCurrent = inputDebitCurrent.nextDouble();
-                            currentBalance = (currentBalance - debitCurrent);
-                            System.out.println("Saldo atual na conta CORRENTE " +accountCurrentNumber+ "->" +currentBalance);
+                            System.out.println("Qual será o valor do DÉBITO realizado na conta CORRENTE "
+                                    + accountCurrentNumber + " ?");
+                            operationValue = inputOperationValue.nextDouble();
+                            currentBalance = (currentBalance - operationValue);
+                            System.out.println(
+                                    "Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> " + currentBalance);
 
                         } else if (i == 5) {
 
                             System.out.println("Voltando para o menu anterior");
+                            System.out.println();
 
                         } else {
 
                             System.out.println("Operação Inválida");
                             System.out.println();
+                        }
 
                     } while (i != 5);
                     break;
@@ -147,20 +150,21 @@ public class App {
                             // TRANSFERIR conta poupança
                         } else if (i == 2) {
                             // TRANSFERIR conta corrente
-                        }else if (i == 5) {
+                        } else if (i == 5) {
 
                             System.out.println("Voltando para o menu anterior");
+                            System.out.println();
 
                         } else {
 
                             System.out.println("Operação Inválida");
                             System.out.println();
+                        }
                     } while (i != 5);
                     break;
 
                 case 4:
                     System.out.println("Você escolheu a opção de CONSULTAR SALDO");
-                    
 
                 case 5:
                     // operação encerrada pelo cliente
@@ -171,6 +175,7 @@ public class App {
                     System.out.println("Operação Inválida!");
                     System.out.println();
                     break;
+
             }
         } while (option != 5);
 
