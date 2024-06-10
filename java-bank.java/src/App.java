@@ -64,20 +64,24 @@ public class App {
 
                         if (i == 1) {
 
-                            System.out.println("Quanto gostaria de CREDITAR em sua conta POUPANÇA " + savingsAccountNumber + " ?");
+                            System.out.println(
+                                    "Quanto gostaria de CREDITAR em sua conta POUPANÇA " + savingsAccountNumber + " ?");
                             System.out.println();
                             operationValue = inputOperationValue.nextDouble();
                             savingsBalance = (savingsBalance + operationValue);
-                            System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> " + savingsBalance);
+                            System.out.println(
+                                    "Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> " + savingsBalance);
                             System.out.println();
 
                         } else if (i == 2) {
 
-                            System.out.println("Quanto gostaria de CREDITAR em sua conta CORRENTE " + accountCurrentNumber + " ?");
+                            System.out.println(
+                                    "Quanto gostaria de CREDITAR em sua conta CORRENTE " + accountCurrentNumber + " ?");
                             System.out.println();
                             operationValue = inputOperationValue.nextDouble();
                             currentBalance = (currentBalance + operationValue);
-                            System.out.println("Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> " + currentBalance);
+                            System.out.println(
+                                    "Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> " + currentBalance);
                             System.out.println();
 
                         } else if (i == 5) {
@@ -112,7 +116,8 @@ public class App {
                                 System.out.println("SALDO INSUFICIENTE PARA SAQUE. DIGITE OUTRO VALOR");
                             } else {
                                 savingsBalance = (savingsBalance - operationValue);
-                                System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> "+ savingsBalance);
+                                System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> "
+                                        + savingsBalance);
                             }
                         } else if (i == 2) {
                             System.out.println("Qual será o valor do DÉBITO realizado na conta CORRENTE "
