@@ -182,6 +182,7 @@ public class App {
 
                 case 4:
                     // consulta de saldo
+                    break;
                 case 5:
                     // operação encerrada pelo cliente
                     System.out.println("Você escolheu a opção de SAIR");
