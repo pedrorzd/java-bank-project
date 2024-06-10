@@ -64,24 +64,20 @@ public class App {
 
                         if (i == 1) {
 
-                            System.out.println(
-                                    "Quanto gostaria de CREDITAR em sua conta POUPANÇA " + savingsAccountNumber + " ?");
+                            System.out.println("Quanto gostaria de CREDITAR em sua conta POUPANÇA " + savingsAccountNumber + " ?");
                             System.out.println();
                             operationValue = inputOperationValue.nextDouble();
                             savingsBalance = (savingsBalance + operationValue);
-                            System.out.println(
-                                    "Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> " + savingsBalance);
+                            System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> " + savingsBalance);
                             System.out.println();
 
                         } else if (i == 2) {
 
-                            System.out.println(
-                                    "Quanto gostaria de CREDITAR em sua conta CORRENTE " + accountCurrentNumber + " ?");
+                            System.out.println("Quanto gostaria de CREDITAR em sua conta CORRENTE " + accountCurrentNumber + " ?");
                             System.out.println();
                             operationValue = inputOperationValue.nextDouble();
                             currentBalance = (currentBalance + operationValue);
-                            System.out.println(
-                                    "Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> " + currentBalance);
+                            System.out.println("Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> " + currentBalance);
                             System.out.println();
 
                         } else if (i == 5) {
@@ -100,6 +96,7 @@ public class App {
 
                 case 2:
                     System.out.println("Você escolheu a opção de DEBITAR");
+                    System.out.println();
                     do {
                         System.out.println("Em qual conta será feito o DÉBITO?");
                         System.out.println("1 - Conta Poupança");
@@ -109,23 +106,22 @@ public class App {
                         i = inputMenuSelector.nextInt();
 
                         if (i == 1) {
-                            System.out.println("Qual será o valor do DÉBITO realizado na conta POUPANÇA "
-                                    + savingsAccountNumber + " ?");
+                            System.out.println("Qual será o valor do DÉBITO realizado na conta POUPANÇA "+ savingsAccountNumber + " ?");
                             operationValue = inputOperationValue.nextDouble();
                             if (operationValue > savingsBalance) {
                                 System.out.println("SALDO INSUFICIENTE PARA SAQUE. DIGITE OUTRO VALOR");
+                                System.out.println();
                             } else {
                                 savingsBalance = (savingsBalance - operationValue);
-                                System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> "
-                                        + savingsBalance);
+                                System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> "+ savingsBalance);
+                                System.out.println();
                             }
                         } else if (i == 2) {
-                            System.out.println("Qual será o valor do DÉBITO realizado na conta CORRENTE "
-                                    + accountCurrentNumber + " ?");
+                            System.out.println("Qual será o valor do DÉBITO realizado na conta CORRENTE "+ accountCurrentNumber + " ?");
                             operationValue = inputOperationValue.nextDouble();
                             currentBalance = (currentBalance - operationValue);
-                            System.out.println(
-                                    "Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> " + currentBalance);
+                            System.out.println("Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> " + currentBalance);
+                            System.out.println();
 
                         } else if (i == 5) {
 
@@ -144,17 +140,33 @@ public class App {
                 case 3:
                     System.out.println("Você escolheu a opção de TRANSFERIR");
                     do {
-                        System.out.println("A valor será retirado de qual conta?");
-                        System.out.println("1 - Conta Poupança");
-                        System.out.println("2 - Conta Corrente");
+                        System.out.println("A transação sera feita entre quais contas?");
+                        System.out.println("1 - Conta Poupança para Conta Corrente");
+                        System.out.println("2 - Conta Corrente para Conta Poupança");
                         System.out.println("5 - SAIR");
                         System.out.println();
                         i = inputMenuSelector.nextInt();
 
                         if (i == 1) {
-                            // TRANSFERIR conta poupança
+
+                            System.out.println("Qual será o valor transferido para a Conta Corrente "+ accountCurrentNumber + " ?");
+                            operationValue = inputOperationValue.nextDouble();
+                            if (operationValue > savingsBalance) {
+                                System.out.println("SALDO INSUFICIENTE PARA TRANSFERENCIA. DIGITE OUTRO VALOR");
+                                System.out.println();
+                            } else {
+                                savingsBalance = (savingsBalance - operationValue);
+                                currentBalance = (currentBalance + operationValue);
+                                System.out.println("Saldo atual na conta CORRENTE " + accountCurrentNumber + " -> "+ currentBalance);
+                                System.out.println();
+                            }
                         } else if (i == 2) {
-                            // TRANSFERIR conta corrente
+                            System.out.println("Qual será o valor transferido para a Conta Poupança "+ savingsAccountNumber+ " ?");
+                            operationValue = inputOperationValue.nextDouble();
+                            currentBalance = (currentBalance - operationValue);
+                            savingsBalance = (savingsBalance + operationValue);
+                            System.out.println("Saldo atual na conta POUPANÇA " + savingsAccountNumber + " -> " + savingsBalance);
+                            System.out.println();
                         } else if (i == 5) {
 
                             System.out.println("Voltando para o menu anterior");
@@ -169,8 +181,7 @@ public class App {
                     break;
 
                 case 4:
-                    System.out.println("Você escolheu a opção de CONSULTAR SALDO");
-
+                    // consulta de saldo
                 case 5:
                     // operação encerrada pelo cliente
                     System.out.println("Você escolheu a opção de SAIR");
